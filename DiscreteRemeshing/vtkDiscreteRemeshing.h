@@ -36,7 +36,7 @@
 #include <vtkIntArray.h>
 #include <vtkPLYWriter.h>
 #include <vtkMetaImageReader.h>
-#include <vtkMINCImageReader.h>
+//#include <vtkMINCImageReader.h>
 #include <vtkImageData.h>
 
 #include "vtkSurface.h"
@@ -603,8 +603,8 @@ void vtkDiscreteRemeshing < Metric >::SamplingPreProcessing () {
 				vtkImageReader2 *Reader;
 				if(strstr (this->InputDensityFile,".mnc") != NULL)
 				{
-					Reader=vtkMINCImageReader::New();
-					((vtkMINCImageReader*) Reader)->RescaleRealValuesOn();
+				  //Reader=vtkMINCImageReader::New();
+				  //((vtkMINCImageReader*) Reader)->RescaleRealValuesOn();
 				}
 				else
 					Reader=vtkMetaImageReader::New();
