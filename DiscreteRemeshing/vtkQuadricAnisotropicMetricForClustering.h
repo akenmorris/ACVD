@@ -318,6 +318,7 @@ public:
 		this->Gradation = 0;
 		this->Object=vtkObject::New();
 		this->QuadricsOptimizationLevel=3;
+		this->Items = nullptr;
 	};
 	~vtkQuadricAnisotropicMetricForClustering ()
 	{
@@ -325,7 +326,8 @@ public:
 			this->CustomWeights->Delete();
 		if (this->PrincipalDirections)
 			this->PrincipalDirections->Delete();
-		this->Object->Delete();	
+		this->Object->Delete();
+		delete [] this->Items;
 	};
 
 	void BuildMetric ( vtkSurface * Mesh, int ClusteringType ) {
@@ -341,6 +343,7 @@ public:
 			vtkIdType v1, v2, v3;
 			double P1[3], P2[3], P3[3];
 			NumberOfElements = Mesh->GetNumberOfCells ();
+			delete [] Items;
 			Items = new Item[Mesh->GetNumberOfCells ()];
 			for (i = 0; i < Mesh->GetNumberOfCells (); i++)
 			{
@@ -377,6 +380,7 @@ public:
 			double Point[3];
 			
 
+			delete [] Items;
 			Items = new Item[Mesh->GetNumberOfPoints ()];
 			for (i = 0; i < Mesh->GetNumberOfPoints (); i++)
 			{

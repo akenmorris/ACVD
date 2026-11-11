@@ -226,9 +226,11 @@ public:
 	{
 		this->CustomWeights=0;
 		this->Gradation=0;
+		this->Items=nullptr;
 	};
 	~vtkL21MetricForClustering()
 	{
+		delete [] this->Items;
 	};
 
 	void BuildMetric( vtkSurface *Mesh, int ClusteringType )
@@ -258,6 +260,7 @@ public:
 		if (ClusteringType==0)
 		{
 			// Items are triangles
+			delete [] Items;
 			Items=new Item[Mesh->GetNumberOfCells()];
 			for (i=0;i<Mesh->GetNumberOfCells();i++)
 			{
@@ -292,6 +295,7 @@ public:
 			vtkIdList *FList=vtkIdList::New();
 			double N[3];
 
+			delete [] Items;
 			Items=new Item[Mesh->GetNumberOfPoints()];
 			vtkDoubleArray *VerticesAreas=Mesh->GetVerticesAreas();
 			for (i=0;i<Mesh->GetNumberOfPoints();i++)

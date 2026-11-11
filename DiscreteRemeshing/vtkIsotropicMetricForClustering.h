@@ -222,6 +222,7 @@ public:
 			// Items are triangles
 			vtkIdType v1,v2,v3;
 			double P1[3],P2[3],P3[3];
+			delete [] Items;
 			Items=new Item[Mesh->GetNumberOfCells()];
 			for (i=0;i<Mesh->GetNumberOfCells();i++)
 			{
@@ -249,6 +250,7 @@ public:
 		else
 		{
 			// Items are vertices
+			delete [] Items;
 			Items=new Item[Mesh->GetNumberOfPoints()];
 			vtkDoubleArray *VerticesAreas=Mesh->GetVerticesAreas();
 			for (i=0;i<Mesh->GetNumberOfPoints();i++)

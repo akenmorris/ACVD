@@ -302,6 +302,7 @@ public:
 			// Items are triangles
 			vtkIdType v1,v2,v3;
 			double P1[ 3 ],P2[ 3 ],P3[ 3 ];
+			delete [] Items;
 			Items = new Item[ Mesh->GetNumberOfCells() ];
 
 			for ( vtkIdType i=0;i < Mesh->GetNumberOfCells(); i++ ) {
@@ -324,6 +325,7 @@ public:
 		} else {
 
 			// Items are vertices
+			delete [] Items;
 			Items = new Item[ Mesh->GetNumberOfPoints() ];
 			vtkDoubleArray *VerticesAreas = Mesh->GetVerticesAreas();
 			for ( vtkIdType i = 0; i < Mesh->GetNumberOfPoints(); i++ ) {
@@ -368,6 +370,7 @@ public:
 		this->ActiveConstraints = 1;
 		this->Object = vtkObject::New();
 		this->QuadricsOptimizationLevel = 3;
+		this->Items = nullptr;
 
 	};
 
@@ -375,6 +378,7 @@ public:
 
 		this->Object->Delete();
 		if ( this->CustomWeights ) this->CustomWeights->Delete();
+		delete [] this->Items;
 
 	};
 
