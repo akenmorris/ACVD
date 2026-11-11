@@ -363,6 +363,7 @@ int vtkDiscreteRemeshing < Metric >::DetectNonManifoldOutputVertices() {
 
 	// free memory
 	ClustersWithIssues->Delete();
+	FList->Delete();
 	IList->Delete();
 	for ( vtkIdType i = 0; i != this->NumberOfClusters; i++ )
 		if ( ClusterItems[ i ] != 0 ) ClusterItems[ i ]->Delete();
